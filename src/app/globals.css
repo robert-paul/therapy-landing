@@ -1,6 +1,15 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Beirut';
+  src: url('/fonts/BeirutTextWeb-VF-Upright-TEST-FONT.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  --font-display: 'Beirut', 'Inter', sans-serif;
   --color-text-primary: #101214;
   --color-text-secondary: #292A2E;
   --color-blue-primary: #1868DB;
@@ -24,6 +33,10 @@
 body {
   background: var(--color-white);
   color: var(--color-text-primary);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
 }
 
 /* Horizontal video carousel */
