@@ -101,10 +101,8 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#101214] leading-tight mb-6">
                   Vibe check your therapist before you commit
                 </h2>
-                <p className="text-xl md:text-2xl font-semibold text-[#101214] mb-4 max-w-xl mx-auto lg:mx-0">
-                  Book free 15-minute intro calls with as many therapists as you want.
-                </p>
                 <p className="text-lg md:text-xl text-[#292A2E] mb-8 max-w-xl mx-auto lg:mx-0">
+                  <span className="font-semibold text-[#101214]">Book free 15-minute intro calls with as many therapists as you want.</span>{" "}
                   No awkward commitments, no "so are we doing this?" pressure. Just real conversations to find someone who actually gets you.
                 </p>
                 <a
