@@ -116,14 +116,14 @@ export default function VideoFeed() {
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                   {/* Therapist info */}
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <h3 className="text-lg font-semibold mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 text-white">
+                    <h3 className="text-base sm:text-lg font-semibold">
                       {therapist.name}
                     </h3>
-                    <p className="text-sm text-white/80 mb-3">
+                    <p className="text-xs sm:text-sm text-white/80 mb-2 sm:mb-3">
                       {therapist.specialty}
                     </p>
-                    <button className="w-full bg-[#1868DB] hover:bg-[#1357b8] text-white font-medium py-2.5 px-5 rounded-full transition-colors text-sm">
+                    <button className="w-full bg-[#1868DB] hover:bg-[#1357b8] text-white font-medium py-2 sm:py-2.5 px-4 sm:px-5 rounded-full transition-colors text-[11px] sm:text-sm whitespace-nowrap">
                       Book Free Consultation
                     </button>
                   </div>
