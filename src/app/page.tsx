@@ -92,6 +92,159 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Vibe Check Section */}
+        <section className="py-12 md:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+              {/* Left: Text content */}
+              <div className="flex-1 text-center lg:text-left">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#101214] leading-tight mb-6">
+                  Vibe check your therapist first
+                </h2>
+                <p className="text-lg md:text-xl text-[#292A2E] mb-8 max-w-xl mx-auto lg:mx-0">
+                  Book free 15-minute intro calls with as many therapists as you
+                  want. No awkward commitments, no "so are we doing this?"
+                  pressure. Just real conversations to find someone who actually
+                  gets you.
+                </p>
+                <a
+                  href="#video-feed"
+                  className="inline-block bg-[#1868DB] hover:bg-[#1357b8] text-white font-medium py-4 px-8 rounded-full transition-colors"
+                >
+                  Browse therapists
+                </a>
+              </div>
+
+              {/* Right: Calendar Visual */}
+              <div className="flex-1 w-full max-w-md lg:max-w-lg">
+                <div className="bg-white rounded-[40px] shadow-xl border border-gray-100 p-6 md:p-8">
+                  {/* Calendar Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold text-[#101214]">
+                      Intro Calls
+                    </h3>
+                    <span className="text-sm text-[#292A2E]">This week</span>
+                  </div>
+
+                  {/* Calendar Items */}
+                  <div className="space-y-3">
+                    {/* Completed Session 1 */}
+                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#EFFFD6] transition-transform hover:scale-[1.02]">
+                      <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center flex-shrink-0">
+                        <svg
+                          className="w-5 h-5 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-[#101214] truncate">
+                          Dr. Sarah Chen
+                        </p>
+                        <p className="text-sm text-[#292A2E]">
+                          Mon 10:00 AM · 15 min
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Completed Session 2 */}
+                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#F8EEFE] transition-transform hover:scale-[1.02]">
+                      <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center flex-shrink-0">
+                        <svg
+                          className="w-5 h-5 text-purple-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-[#101214] truncate">
+                          Marcus Thompson, LMFT
+                        </p>
+                        <p className="text-sm text-[#292A2E]">
+                          Tue 2:30 PM · 15 min
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Current/Highlighted Session */}
+                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#E9F2FE] ring-2 ring-[#1868DB] transition-transform hover:scale-[1.02]">
+                      <div className="w-10 h-10 rounded-full bg-[#1868DB] flex items-center justify-center flex-shrink-0">
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-[#101214] truncate">
+                          Dr. Emily Rodriguez
+                        </p>
+                        <p className="text-sm text-[#1868DB] font-medium">
+                          Today 4:00 PM · 15 min
+                        </p>
+                      </div>
+                      <span className="px-3 py-1 text-xs font-medium bg-[#1868DB] text-white rounded-full">
+                        Join
+                      </span>
+                    </div>
+
+                    {/* Upcoming Session */}
+                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#FFF5D4] transition-transform hover:scale-[1.02]">
+                      <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center flex-shrink-0">
+                        <svg
+                          className="w-5 h-5 text-amber-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-[#101214] truncate">
+                          James Park, PsyD
+                        </p>
+                        <p className="text-sm text-[#292A2E]">
+                          Thu 11:00 AM · 15 min
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* How It Works Section */}
         <section id="how-it-works" className="py-20 md:py-32">
           <div className="max-w-7xl mx-auto px-6">
