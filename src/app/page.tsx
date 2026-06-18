@@ -129,13 +129,14 @@ export default function Home() {
                   {/* Calendar Items */}
                   <div className="space-y-3">
                     {/* Completed Session 1 */}
-                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#EFFFD6] transition-transform hover:scale-[1.02]">
+                    <div className="group flex items-center gap-4 p-4 rounded-[24px] bg-[#EFFFD6] transition-transform hover:scale-[1.02]">
                       <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center flex-shrink-0">
                         <svg
                           className="w-5 h-5 text-green-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             strokeLinecap="round"
@@ -156,13 +157,14 @@ export default function Home() {
                     </div>
 
                     {/* Completed Session 2 */}
-                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#F8EEFE] transition-transform hover:scale-[1.02]">
+                    <div className="group flex items-center gap-4 p-4 rounded-[24px] bg-[#F8EEFE] transition-transform hover:scale-[1.02]">
                       <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center flex-shrink-0">
                         <svg
                           className="w-5 h-5 text-purple-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             strokeLinecap="round"
@@ -183,13 +185,14 @@ export default function Home() {
                     </div>
 
                     {/* Current/Highlighted Session */}
-                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#E9F2FE] ring-2 ring-[#1868DB] transition-transform hover:scale-[1.02]">
+                    <div className="group flex items-center gap-4 p-4 rounded-[24px] bg-[#E9F2FE] ring-2 ring-[#1868DB] transition-transform hover:scale-[1.02]">
                       <div className="w-10 h-10 rounded-full bg-[#1868DB] flex items-center justify-center flex-shrink-0">
                         <svg
                           className="w-5 h-5 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             strokeLinecap="round"
@@ -207,19 +210,23 @@ export default function Home() {
                           Today 4:00 PM · 15 min
                         </p>
                       </div>
-                      <span className="px-3 py-1 text-xs font-medium bg-[#1868DB] text-white rounded-full">
+                      <button
+                        className="px-3 py-1 text-xs font-medium bg-[#1868DB] text-white rounded-full hover:bg-[#1357b8] transition-colors"
+                        aria-label="Join call with Dr. Emily Rodriguez"
+                      >
                         Join
-                      </span>
+                      </button>
                     </div>
 
                     {/* Upcoming Session */}
-                    <div className="group flex items-center gap-4 p-4 rounded-2xl bg-[#FFF5D4] transition-transform hover:scale-[1.02]">
+                    <div className="group flex items-center gap-4 p-4 rounded-[24px] bg-[#FFF5D4] transition-transform hover:scale-[1.02]">
                       <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center flex-shrink-0">
                         <svg
                           className="w-5 h-5 text-amber-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             strokeLinecap="round"
@@ -357,7 +364,7 @@ export default function Home() {
               </a>
             </nav>
             <p className="text-sm text-[#292A2E]">
-              2024 MindMatch. All rights reserved.
+              {new Date().getFullYear()} MindMatch. All rights reserved.
             </p>
           </div>
         </div>
