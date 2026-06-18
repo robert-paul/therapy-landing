@@ -320,7 +320,7 @@ export default function Home() {
                   No calls. No emails. Just pick a time.
                 </h2>
                 <p className="text-lg md:text-xl text-[#292A2E] mb-8 max-w-xl mx-auto lg:mx-0">
-                  Deciding to reach out is hard enough. See who's available right now, tap to book, and you're done—in under a minute.
+                  Deciding to reach out is hard enough. See who's available right now, tap to book, and you're done in under a minute.
                 </p>
                 <a
                   href="#video-feed"
