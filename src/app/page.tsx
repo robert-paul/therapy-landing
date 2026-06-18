@@ -99,7 +99,7 @@ export default function Home() {
               {/* Left: Text content */}
               <div className="flex-1 text-center lg:text-left">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#101214] leading-tight mb-6">
-                  Vibe check your therapist first
+                  Vibe check your therapist before you commit
                 </h2>
                 <p className="text-lg md:text-xl text-[#292A2E] mb-8 max-w-xl mx-auto lg:mx-0">
                   Book free 15-minute intro calls with as many therapists as you
