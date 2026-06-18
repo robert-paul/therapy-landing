@@ -85,7 +85,15 @@ export default function VideoFeed() {
   }, [selectedIndex]);
 
   return (
-    <div className="video-carousel-container w-full overflow-hidden">
+    <div
+      className="video-carousel-container w-full overflow-hidden"
+      style={{
+        maskImage:
+          "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+      }}
+    >
       <div className="embla" ref={emblaRef}>
         <div className="embla__container flex">
           {therapists.map((therapist, index) => {
@@ -101,8 +109,8 @@ export default function VideoFeed() {
                 <div
                   className="video-card relative h-[480px] rounded-[32px] bg-[#101214] overflow-hidden shadow-2xl"
                   style={{
-                    transform: isSelected ? "scale(1)" : "scale(0.85)",
-                    opacity: isSelected ? 1 : 0.5,
+                    transform: isSelected ? "scale(1)" : "scale(0.75)",
+                    opacity: isSelected ? 1 : 0.3,
                     transition: "transform 0.3s ease, opacity 0.3s ease",
                   }}
                 >
