@@ -95,7 +95,7 @@ export default function Home() {
         {/* Vibe Check Section */}
         <section className="py-12 md:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
               {/* Left: Text content */}
               <div className="flex-1 text-center lg:text-left">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#101214] leading-tight mb-6">
