@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-text-primary: #101214;
+  --color-text-secondary: #292A2E;
+  --color-blue-primary: #1868DB;
+  --color-blue-tint: #E9F2FE;
+  --color-dark: #101214;
+  --color-white: #FFFFFF;
+  --radius-pill: 9999px;
+  --radius-card: 40px;
+  --radius-section: 64px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-blue-primary: var(--color-blue-primary);
+  --color-blue-tint: var(--color-blue-tint);
+  --color-dark: var(--color-dark);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --font-sans: var(--font-inter);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-white);
+  color: var(--color-text-primary);
+}
+
+/* Video feed scroll snap */
+.video-feed {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.video-feed::-webkit-scrollbar {
+  display: none;
+}
+
+.video-feed {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.video-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
