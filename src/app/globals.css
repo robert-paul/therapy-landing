@@ -26,23 +26,26 @@ body {
   color: var(--color-text-primary);
 }
 
-/* Video feed scroll snap */
-.video-feed {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+/* Horizontal video carousel */
+.video-carousel-container {
+  cursor: grab;
 }
 
-.video-feed::-webkit-scrollbar {
-  display: none;
+.video-carousel-container:active {
+  cursor: grabbing;
 }
 
-.video-feed {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.embla__slide {
+  min-width: 280px;
 }
 
-.video-item {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+@media (min-width: 1024px) {
+  .embla__slide {
+    min-width: 320px;
+    width: 320px;
+  }
+
+  .embla__slide .video-card {
+    height: 520px;
+  }
 }

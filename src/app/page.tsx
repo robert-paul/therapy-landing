@@ -53,10 +53,10 @@ export default function Home() {
         {/* Hero Section */}
         <section
           id="hero"
-          className="py-20 md:py-32 bg-gradient-to-b from-[#E9F2FE] to-white"
+          className="py-12 md:py-20 lg:py-32 bg-gradient-to-b from-[#E9F2FE] to-white overflow-hidden"
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="flex flex-col-reverse lg:flex-row items-center gap-8 lg:gap-20">
               {/* Left: Text content */}
               <div className="flex-1 text-center lg:text-left">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#101214] leading-tight mb-6">
@@ -84,8 +84,8 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              {/* Right: Video Feed */}
-              <div id="video-feed" className="flex-shrink-0">
+              {/* Right: Video Feed Carousel */}
+              <div id="video-feed" className="w-full lg:flex-1 lg:max-w-[600px]">
                 <VideoFeed />
               </div>
             </div>

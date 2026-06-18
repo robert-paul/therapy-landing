@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 interface Therapist {
   name: string;
@@ -47,91 +48,95 @@ const therapists: Therapist[] = [
 ];
 
 export default function VideoFeed() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    containScroll: false,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target as HTMLVideoElement;
-          if (entry.isIntersecting) {
-            video.play().catch(() => {
-              // Autoplay blocked, user interaction required
-            });
-          } else {
-            video.pause();
-          }
+  // Play/pause videos based on selection
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index === selectedIndex) {
+        video.play().catch(() => {
+          // Autoplay blocked, user interaction required
         });
-      },
-      {
-        root: container,
-        threshold: 0.6,
+      } else {
+        video.pause();
       }
-    );
-
-    videoRefs.current.forEach((video) => {
-      if (video) observer.observe(video);
     });
-
-    return () => observer.disconnect();
-  }, []);
+  }, [selectedIndex]);
 
   return (
-    <div
-      ref={containerRef}
-      className="video-feed relative h-[600px] w-full max-w-[340px] rounded-[40px] bg-[#101214] overflow-hidden shadow-2xl"
-    >
-      {therapists.map((therapist, index) => (
-        <div
-          key={therapist.video}
-          className="video-item relative h-full w-full flex-shrink-0"
-        >
-          <video
-            ref={(el) => {
-              videoRefs.current[index] = el;
-            }}
-            src={therapist.video}
-            className="h-full w-full object-cover"
-            loop
-            muted
-            playsInline
-            preload="metadata"
-          />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-          {/* Therapist info */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <h3 className="text-xl font-semibold mb-1">{therapist.name}</h3>
-            <p className="text-sm text-white/80 mb-4">{therapist.specialty}</p>
-            <button className="w-full bg-[#1868DB] hover:bg-[#1357b8] text-white font-medium py-3 px-6 rounded-full transition-colors">
-              Book Free Consultation
-            </button>
-          </div>
-          {/* Scroll indicator */}
-          {index === 0 && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/60 animate-bounce">
-              <span className="text-xs mb-1">Scroll to explore</span>
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+    <div className="video-carousel-container w-full overflow-hidden">
+      <div className="embla" ref={emblaRef}>
+        <div className="embla__container flex">
+          {therapists.map((therapist, index) => {
+            const isSelected = index === selectedIndex;
+            return (
+              <div
+                key={therapist.video}
+                className="embla__slide flex-shrink-0 px-2"
+                style={{
+                  width: "280px",
+                }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </div>
-          )}
+                <div
+                  className="video-card relative h-[480px] rounded-[32px] bg-[#101214] overflow-hidden shadow-2xl"
+                  style={{
+                    transform: isSelected ? "scale(1)" : "scale(0.85)",
+                    opacity: isSelected ? 1 : 0.5,
+                    transition: "transform 0.3s ease, opacity 0.3s ease",
+                  }}
+                >
+                  <video
+                    ref={(el) => {
+                      videoRefs.current[index] = el;
+                    }}
+                    src={therapist.video}
+                    className="h-full w-full object-cover"
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                  {/* Therapist info */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                    <h3 className="text-lg font-semibold mb-1">
+                      {therapist.name}
+                    </h3>
+                    <p className="text-sm text-white/80 mb-3">
+                      {therapist.specialty}
+                    </p>
+                    <button className="w-full bg-[#1868DB] hover:bg-[#1357b8] text-white font-medium py-2.5 px-5 rounded-full transition-colors text-sm">
+                      Book Free Consultation
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
