@@ -54,6 +54,7 @@ export default function VideoFeed() {
     containScroll: false,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const onSelect = useCallback(() => {
@@ -70,10 +71,11 @@ export default function VideoFeed() {
     };
   }, [emblaApi, onSelect]);
 
-  // Play/pause videos based on selection
+  // Play/pause videos based on selection and handle mute state
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
+      video.muted = isMuted;
       if (index === selectedIndex) {
         video.play().catch(() => {
           // Autoplay blocked, user interaction required
@@ -82,7 +84,7 @@ export default function VideoFeed() {
         video.pause();
       }
     });
-  }, [selectedIndex]);
+  }, [selectedIndex, isMuted]);
 
   return (
     <div className="video-carousel-container w-full overflow-hidden">
@@ -109,10 +111,56 @@ export default function VideoFeed() {
                     src={therapist.video}
                     className="h-full w-full object-cover"
                     loop
-                    muted
+                    muted={isMuted}
                     playsInline
                     preload="metadata"
                   />
+                  {/* Mute/Unmute button - only show on selected video */}
+                  {isSelected && (
+                    <button
+                      onClick={() => setIsMuted(!isMuted)}
+                      className="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-colors z-10"
+                      aria-label={isMuted ? "Unmute video" : "Mute video"}
+                    >
+                      {isMuted ? (
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                          />
+                        </svg>
+                      )}
+                    </button>
+                  )}
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                   {/* Therapist info */}
