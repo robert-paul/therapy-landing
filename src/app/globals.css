@@ -49,8 +49,28 @@ h1, h2, h3 {
   cursor: grabbing;
 }
 
+/* Mobile-first responsive carousel slides */
 .embla__slide {
-  min-width: 280px;
+  min-width: 220px;
+  width: 220px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.embla__slide .video-card {
+  height: 420px;
+}
+
+@media (min-width: 640px) {
+  .embla__slide {
+    min-width: 280px;
+    width: 280px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .embla__slide .video-card {
+    height: 480px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -58,7 +78,6 @@ h1, h2, h3 {
     min-width: 320px;
     width: 320px;
   }
-
   .embla__slide .video-card {
     height: 520px;
   }

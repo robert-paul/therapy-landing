@@ -54,6 +54,7 @@ export default function VideoFeed() {
     containScroll: false,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const onSelect = useCallback(() => {
@@ -70,6 +71,14 @@ export default function VideoFeed() {
     };
   }, [emblaApi, onSelect]);
 
+  // Mobile detection for responsive styling
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Play/pause videos based on selection
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
@@ -84,14 +93,19 @@ export default function VideoFeed() {
     });
   }, [selectedIndex]);
 
+  // Responsive values for scale, opacity, and mask gradient
+  const sideScale = isMobile ? 0.85 : 0.75;
+  const sideOpacity = isMobile ? 0.5 : 0.3;
+  const maskGradient = isMobile
+    ? "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)"
+    : "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)";
+
   return (
     <div
       className="video-carousel-container w-full overflow-hidden"
       style={{
-        maskImage:
-          "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
-        WebkitMaskImage:
-          "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+        maskImage: maskGradient,
+        WebkitMaskImage: maskGradient,
       }}
     >
       <div className="embla" ref={emblaRef}>
@@ -101,16 +115,13 @@ export default function VideoFeed() {
             return (
               <div
                 key={therapist.video}
-                className="embla__slide flex-shrink-0 px-2"
-                style={{
-                  width: "280px",
-                }}
+                className="embla__slide flex-shrink-0"
               >
                 <div
-                  className="video-card relative h-[480px] rounded-[32px] bg-[#101214] overflow-hidden shadow-2xl"
+                  className="video-card relative rounded-[32px] bg-[#101214] overflow-hidden shadow-2xl"
                   style={{
-                    transform: isSelected ? "scale(1)" : "scale(0.75)",
-                    opacity: isSelected ? 1 : 0.3,
+                    transform: isSelected ? "scale(1)" : `scale(${sideScale})`,
+                    opacity: isSelected ? 1 : sideOpacity,
                     transition: "transform 0.3s ease, opacity 0.3s ease",
                   }}
                 >
