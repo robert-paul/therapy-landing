@@ -54,7 +54,6 @@ export default function VideoFeed() {
     containScroll: false,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const onSelect = useCallback(() => {
@@ -71,14 +70,6 @@ export default function VideoFeed() {
     };
   }, [emblaApi, onSelect]);
 
-  // Mobile detection for responsive styling
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   // Play/pause videos based on selection
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
@@ -93,21 +84,8 @@ export default function VideoFeed() {
     });
   }, [selectedIndex]);
 
-  // Responsive values for scale, opacity, and mask gradient
-  const sideScale = isMobile ? 0.85 : 0.75;
-  const sideOpacity = isMobile ? 0.5 : 0.3;
-  const maskGradient = isMobile
-    ? "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)"
-    : "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)";
-
   return (
-    <div
-      className="video-carousel-container w-full overflow-hidden"
-      style={{
-        maskImage: maskGradient,
-        WebkitMaskImage: maskGradient,
-      }}
-    >
+    <div className="video-carousel-container w-full overflow-hidden">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container flex">
           {therapists.map((therapist, index) => {
@@ -118,11 +96,10 @@ export default function VideoFeed() {
                 className="embla__slide flex-shrink-0"
               >
                 <div
-                  className="video-card relative rounded-[32px] bg-[#101214] overflow-hidden shadow-2xl"
+                  className="video-card relative rounded-[32px] bg-[#101214] overflow-hidden shadow-2xl transition-all duration-300 ease-out"
                   style={{
-                    transform: isSelected ? "scale(1)" : `scale(${sideScale})`,
-                    opacity: isSelected ? 1 : sideOpacity,
-                    transition: "transform 0.3s ease, opacity 0.3s ease",
+                    transform: isSelected ? "scale(1)" : "scale(var(--carousel-side-scale))",
+                    opacity: isSelected ? 1 : "var(--carousel-side-opacity)",
                   }}
                 >
                   <video
