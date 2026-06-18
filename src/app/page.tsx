@@ -250,6 +250,89 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Instant Booking Section */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+              {/* Left: Phone Mockup */}
+              <div className="flex-1 w-full max-w-sm lg:max-w-md flex justify-center order-1 lg:order-none">
+                {/* Phone Frame */}
+                <div className="bg-[#101214] rounded-[40px] p-2 shadow-2xl">
+                  {/* Inner Screen */}
+                  <div className="bg-white rounded-[32px] w-[280px] overflow-hidden">
+                    <div className="p-5 space-y-5">
+                      {/* Therapist Mini-Card */}
+                      <div className="bg-[#F8EEFE] rounded-2xl p-4 flex items-center gap-3">
+                        {/* Avatar with Initials */}
+                        <div className="w-12 h-12 rounded-full bg-purple-200 flex items-center justify-center flex-shrink-0">
+                          <span className="text-sm font-semibold text-purple-700">SC</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-[#101214] text-sm">Dr. Sarah Chen</p>
+                          <div className="flex items-center gap-1.5 mt-0.5">
+                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span className="text-xs text-green-600 font-medium">Available now</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Date Label */}
+                      <div className="text-center">
+                        <p className="text-sm font-medium text-[#292A2E]">
+                          Today, {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        </p>
+                      </div>
+
+                      {/* Time Slots Grid */}
+                      <div className="grid grid-cols-3 gap-2">
+                        <button className="py-3 px-2 rounded-xl bg-[#E9F2FE] text-sm font-medium text-[#101214] hover:ring-2 hover:ring-[#1868DB]/50 transition-all">
+                          10:00
+                        </button>
+                        <button className="py-3 px-2 rounded-xl bg-[#1868DB] text-sm font-medium text-white shadow-md">
+                          10:30
+                        </button>
+                        <button className="py-3 px-2 rounded-xl bg-[#E9F2FE] text-sm font-medium text-[#101214] hover:ring-2 hover:ring-[#1868DB]/50 transition-all">
+                          11:00
+                        </button>
+                        <button className="py-3 px-2 rounded-xl bg-[#E9F2FE] text-sm font-medium text-[#101214] hover:ring-2 hover:ring-[#1868DB]/50 transition-all">
+                          11:30
+                        </button>
+                        <button className="py-3 px-2 rounded-xl bg-[#E9F2FE] text-sm font-medium text-[#101214] hover:ring-2 hover:ring-[#1868DB]/50 transition-all">
+                          2:00
+                        </button>
+                        <button className="py-3 px-2 rounded-xl bg-[#E9F2FE] text-sm font-medium text-[#101214] hover:ring-2 hover:ring-[#1868DB]/50 transition-all">
+                          2:30
+                        </button>
+                      </div>
+
+                      {/* Book Button */}
+                      <button className="w-full py-3.5 bg-[#1868DB] hover:bg-[#1357b8] text-white font-medium rounded-full transition-colors">
+                        Book 10:30 AM
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Text content */}
+              <div className="flex-1 text-center lg:text-left order-2 lg:order-none">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#101214] leading-tight mb-6">
+                  No calls. No emails. Just pick a time.
+                </h2>
+                <p className="text-lg md:text-xl text-[#292A2E] mb-8 max-w-xl mx-auto lg:mx-0">
+                  Deciding to reach out is hard enough. See who's available right now, tap to book, and you're done—in under a minute.
+                </p>
+                <a
+                  href="#video-feed"
+                  className="inline-block bg-[#1868DB] hover:bg-[#1357b8] text-white font-medium py-4 px-8 rounded-full transition-colors"
+                >
+                  Find available therapists
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* How It Works Section */}
         <section id="how-it-works" className="py-20 md:py-32">
           <div className="max-w-7xl mx-auto px-6">
