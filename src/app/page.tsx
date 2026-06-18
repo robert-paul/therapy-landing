@@ -257,7 +257,7 @@ export default function Home() {
               {/* Left: Phone Mockup */}
               <div className="flex-1 w-full max-w-sm lg:max-w-md flex justify-center order-1 lg:order-none">
                 {/* Phone Frame */}
-                <div className="bg-[#101214] rounded-[40px] p-2 shadow-2xl">
+                <div className="bg-gray-100 rounded-[40px] p-2 shadow-xl border border-gray-200">
                   {/* Inner Screen */}
                   <div className="bg-white rounded-[32px] w-[280px] overflow-hidden">
                     <div className="p-5 space-y-5">
